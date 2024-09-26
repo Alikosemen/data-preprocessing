@@ -1,0 +1,27 @@
+Renk     Boyut    Kasa     Marka     Model  Fiyat  Kamera  Ekran         Cekirdek
+
+Mavi      5.6     Plastik  Samsung   Eski   2000     16     Dokunmatik    4
+
+Kırmızı   4.3     Celik    Casper    Yeni   3000     8      Bastirmatik   2
+
+Siyah     6.4     Celik    Huawei    Eski   1500     24     Bastirmatik   10
+
+Beyaz     6.4     Yari-Plastik    Xiaomi    Eski   1500     24     Dokunmatik   12
+
+Mavi      5.6     Plastik  Samsung   Eski   2000     16     Dokunmatik    6
+
+Mor      5.6     Plastik  Huawei   Eski   2000     16     Dokunmatik    6
+
+Yeşil      6.6     Celik  Samsung   Eski   1000     128     Dokunmatik    2
+
+Mavi      12.6     Plastik  Huawei   Eski   2450     16     Dokunmatik    4
+
+Kırmızı      11.6     Plastik  Redmi   Yeni   2400     32     Dokunmatik    4
+
+Kırmızı      5.4     Celik  Samsung   Eski   1000     64     Dokunmatik    4
+
+Beyaz      4.5     Plastik  Nokia   Eski   2005     16     Bastirmatik    6
+
+Mavi      7.6     Plastik  Samsung   Yeni   1999     16     Dokunmatik    8
+
+Siyah      4.5     Celik  Nokia   Eski   2005     16     Bastirmatik    6
