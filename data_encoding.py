@@ -1,7 +1,6 @@
 text = open('sample_dataset.txt', 'r')
 
 lines = text.readlines()
-
 headers = lines[0].strip().split()
 
 my_target = "Marka"
@@ -16,19 +15,15 @@ for line in lines[1:]:
     for i, header in enumerate(headers):
         entry[header] = values[i]
     data.append(entry)
-    
 
 
 str_to_encode = {}
 
 
-def encode_value(column_name, value):
-    if column_name not in str_to_encode:
-        str_to_encode[column_name] = {}
-    if value not in str_to_encode[column_name]:
-        str_to_encode[column_name][value] = len(str_to_encode[column_name]) + 1
-    return str_to_encode[column_name][value]
-
+def encode_value(value):
+    if value not in str_to_encode:
+        str_to_encode[value] = len(str_to_encode) + 1
+    return str_to_encode[value]
 
 
 numeric_columns = []
@@ -40,7 +35,6 @@ def is_numeric(value):
         return True
     except ValueError:
         return False
-
 
 
 for header in headers:
@@ -57,23 +51,17 @@ def encode_target(target):
     return targets[target]
 
 
-
-
-
 for item in data:
     encode_target(item[my_target])
 
 
 encoded_data = []
-
-
-
-columns = [header for header in headers if header != my_target] + [f"Class_{i}" for i in range(1, len(targets) + 1)]
+columns = [header for header in headers if header != my_target] + \
+          [f"Class_{i}" for i in range(1, len(targets) + 1)]
 
 
 for item in data:
     encoded_item = []
-
     for header in headers:
         if header == my_target:
             continue
@@ -83,9 +71,7 @@ for item in data:
             except ValueError:
                 encoded_item.append(float(item[header]))
         else:
-            encoded_item.append(encode_value(header, item[header]))
-
-
+            encoded_item.append(encode_value(item[header]))
     target_code = encode_target(item[my_target])
     for i in range(1, len(targets) + 1):
         if i == target_code:
@@ -96,10 +82,7 @@ for item in data:
     encoded_data.append(encoded_item)
 
 
-
 column_width = 15
-
-
 header_line = " | ".join([f"{col:>{column_width}}" for col in columns])
 print(header_line)
 print("-" * len(header_line))
