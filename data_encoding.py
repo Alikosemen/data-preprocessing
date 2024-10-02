@@ -84,7 +84,6 @@ for item in data:
             continue
         encoded_item.append(encoded_columns[header][data.index(item)])
 
-
     target_code = encode_target(item[my_target])
     for i in range(1, len(targets) + 1):
         if i == target_code:
