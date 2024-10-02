@@ -8,6 +8,7 @@ my_target = "Marka"
 data = []
 for line in lines[1:]:
     values = line.strip().split()
+    print(values)
     if len(values) != len(headers):
         continue
 
@@ -60,18 +61,30 @@ columns = [header for header in headers if header != my_target] + \
           [f"Class_{i}" for i in range(1, len(targets) + 1)]
 
 
+encoded_columns = {header: [] for header in headers}
+for header in headers:
+    if header == my_target:
+        continue
+
+    for item in data:
+        if header in numeric_columns:
+            try:
+                encoded_columns[header].append(int(item[header]))
+            except ValueError:
+                encoded_columns[header].append(float(item[header]))
+        else:
+            encoded_columns[header].append(encode_value(item[header]))
+
+
 for item in data:
     encoded_item = []
+
     for header in headers:
         if header == my_target:
             continue
-        elif header in numeric_columns:
-            try:
-                encoded_item.append(int(item[header]))
-            except ValueError:
-                encoded_item.append(float(item[header]))
-        else:
-            encoded_item.append(encode_value(item[header]))
+        encoded_item.append(encoded_columns[header][data.index(item)])
+
+
     target_code = encode_target(item[my_target])
     for i in range(1, len(targets) + 1):
         if i == target_code:
@@ -86,7 +99,6 @@ column_width = 15
 header_line = " | ".join([f"{col:>{column_width}}" for col in columns])
 print(header_line)
 print("-" * len(header_line))
-
 
 for row in encoded_data:
     row_line = " | ".join([f"{str(val):>{column_width}}" for val in row])
