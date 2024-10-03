@@ -1,0 +1,7 @@
+Student   Midterm_score    Final_score   Passing
+
+Ali           90               100         Y
+
+Remzi         ?                 75         N
+
+Cengiz        80                ?          Y
