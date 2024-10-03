@@ -1,4 +1,4 @@
-text = open('sample_dataset.txt', 'r')
+text = open('datasets/sample_dataset.txt', 'r')
 
 lines = text.readlines()
 headers = lines[0].strip().split()
@@ -8,7 +8,6 @@ my_target = "Marka"
 data = []
 for line in lines[1:]:
     values = line.strip().split()
-    print(values)
     if len(values) != len(headers):
         continue
 
@@ -16,6 +15,25 @@ for line in lines[1:]:
     for i, header in enumerate(headers):
         entry[header] = values[i]
     data.append(entry)
+
+
+totals = {}
+counts = {}
+for row in data:
+    for key, value in row.items():
+        if value.isdigit():
+            if key not in totals:
+                totals[key] = 0
+                counts[key] = 0
+            totals[key] += int(value)
+            counts[key] += 1
+
+mean = {key: totals[key] / counts[key]  for key in totals}
+
+for row in data:
+    for key, value in row.items():
+        if value == "?" and key in mean:
+            row[key] = round(mean[key])
 
 
 str_to_encode = {}
@@ -83,6 +101,7 @@ for item in data:
         if header == my_target:
             continue
         encoded_item.append(encoded_columns[header][data.index(item)])
+
 
     target_code = encode_target(item[my_target])
     for i in range(1, len(targets) + 1):
