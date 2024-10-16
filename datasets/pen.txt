@@ -1,0 +1,6 @@
+Size(cm) Color
+2         Red
+?         Red
+6         Blue
+7         Blue
+?         Yellow
