@@ -2,6 +2,7 @@ from fill_missing_values import fill_missing_values
 from utils import format_output
 import file_io
 
+
 def encode(file_name, my_target):
     headers, data = file_io.read_dataset(file_name)
 

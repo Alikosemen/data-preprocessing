@@ -2,11 +2,13 @@ import os
 
 DATASET_PATH = "/home/aliksmn/PycharmProjects/machine_learning/datasets"
 
+
 def load_datasets():
     try:
         return [f for f in os.listdir(DATASET_PATH) if f.endswith(".txt")]
     except Exception as e:
         raise Exception(f"Error loading datasets: {str(e)}")
+
 
 def read_dataset(file_name):
     file_path = os.path.join(DATASET_PATH, file_name)

@@ -19,7 +19,9 @@ class DatasetProcessorGUI:
         datasets = file_io.load_datasets()
 
         tk.Label(self.root, text="Select Dataset:").pack(pady=10)
-        self.dataset_dropdown = tk.OptionMenu(self.root, self.dataset_var, *datasets, command=self.on_dataset_select)
+        self.dataset_dropdown = tk.OptionMenu(
+            self.root, self.dataset_var, *datasets, command=self.on_dataset_select
+        )
         self.dataset_dropdown.pack(pady=5)
 
         tk.Label(self.root, text="Select Target Variable:").pack(pady=10)
@@ -36,7 +38,9 @@ class DatasetProcessorGUI:
                 headers, _ = file_io.read_dataset(selected_file)
                 self.target_dropdown["menu"].delete(0, "end")
                 for header in headers:
-                    self.target_dropdown["menu"].add_command(label=header, command=tk._setit(self.target_var, header))
+                    self.target_dropdown["menu"].add_command(
+                        label=header, command=tk._setit(self.target_var, header)
+                    )
                 self.target_var.set(headers[0])
             except Exception as e:
                 messagebox.showerror("Error", f"Error reading file: {str(e)}")
@@ -46,7 +50,9 @@ class DatasetProcessorGUI:
         target_variable = self.target_var.get()
 
         if not selected_file or not target_variable:
-            messagebox.showerror("Error", "Please select a dataset and target variable.")
+            messagebox.showerror(
+                "Error", "Please select a dataset and target variable."
+            )
             return
 
         try:
@@ -69,7 +75,12 @@ class DatasetProcessorGUI:
         h_scrollbar = tk.Scrollbar(text_frame, orient=tk.HORIZONTAL)
         h_scrollbar.pack(side=tk.BOTTOM, fill=tk.X)
 
-        result_text = tk.Text(text_frame, wrap="none", yscrollcommand=v_scrollbar.set, xscrollcommand=h_scrollbar.set)
+        result_text = tk.Text(
+            text_frame,
+            wrap="none",
+            yscrollcommand=v_scrollbar.set,
+            xscrollcommand=h_scrollbar.set,
+        )
         result_text.pack(fill=tk.BOTH, expand=True)
 
         v_scrollbar.config(command=result_text.yview)
@@ -77,5 +88,8 @@ class DatasetProcessorGUI:
 
         result_text.insert(tk.END, result)
 
-        tk.Button(result_window, text="Exit Fullscreen",
-                  command=lambda: result_window.attributes("-fullscreen", False)).pack(pady=10)
+        tk.Button(
+            result_window,
+            text="Exit Fullscreen",
+            command=lambda: result_window.attributes("-fullscreen", False),
+        ).pack(pady=10)
